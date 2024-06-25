@@ -16,6 +16,7 @@ const userRepository = new PostgresUsersRepository_1.PostgresUserRepository();
 const userService = new UserServie_1.UserService(userRepository);
 const usersController = new UsersController_1.UsersController(userService);
 app.post('/api/v1/users', (req, res) => usersController.registerUser(req, res));
+app.post('/api/v1/userslogin', (req, res) => usersController.loginUser(req, res));
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

@@ -32,5 +32,15 @@ class PostgresUserRepository {
             }
         });
     }
+    findByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield UsersModel_1.default.findOne({ where: { email } });
+            }
+            catch (error) {
+                throw new Error(`Error finding user by email: ${error.message}`);
+            }
+        });
+    }
 }
 exports.PostgresUserRepository = PostgresUserRepository;

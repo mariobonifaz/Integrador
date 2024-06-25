@@ -24,5 +24,19 @@ class UserService {
             }
         });
     }
+    loginUser(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = yield this.userRepository.findByEmail(email);
+                if (user && user.password === password) {
+                    return user;
+                }
+                return null;
+            }
+            catch (error) {
+                throw new Error(`Error logging in user: ${error.message}`);
+            }
+        });
+    }
 }
 exports.UserService = UserService;

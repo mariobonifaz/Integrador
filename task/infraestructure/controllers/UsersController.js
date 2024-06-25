@@ -30,5 +30,27 @@ class UsersController {
             }
         });
     }
+    loginUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { email, password } = req.body;
+                const user = yield this.userService.loginUser(email, password);
+                if (user) {
+                    res.status(200).json(user);
+                }
+                else {
+                    res.status(401).json({ error: 'Invalid email or password' });
+                }
+            }
+            catch (err) {
+                if (err instanceof Error) {
+                    res.status(400).json({ error: err.message });
+                }
+                else {
+                    res.status(500).json({ error: "Internal server error" });
+                }
+            }
+        });
+    }
 }
 exports.UsersController = UsersController;

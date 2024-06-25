@@ -17,4 +17,12 @@ export class PostgresUserRepository implements UserRepository {
             throw new Error(`Error creating product: ${(error as Error).message}`);
         }
     }
+    
+    async findByEmail(email: string): Promise<Users | null> {
+        try {
+            return await UsersModel.findOne({ where: { email } });
+        } catch (error) {
+            throw new Error(`Error finding user by email: ${(error as Error).message}`);
+        }
+    }
 }
