@@ -42,5 +42,16 @@ class PostgresUserRepository {
             }
         });
     }
+    deleteUserByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield UsersModel_1.default.destroy({ where: { email } });
+                return result > 0;
+            }
+            catch (error) {
+                throw new Error(`Error deleting user: ${error.message}`);
+            }
+        });
+    }
 }
 exports.PostgresUserRepository = PostgresUserRepository;

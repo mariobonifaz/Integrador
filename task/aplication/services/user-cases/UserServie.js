@@ -38,5 +38,15 @@ class UserService {
             }
         });
     }
+    deleteUserByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.userRepository.deleteUserByEmail(email);
+            }
+            catch (error) {
+                throw new Error(`Error deleting user: ${error.message}`);
+            }
+        });
+    }
 }
 exports.UserService = UserService;

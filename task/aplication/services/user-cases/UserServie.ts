@@ -25,4 +25,12 @@ export class UserService{
             throw new Error(`Error logging in user: ${(error as Error).message}`);
         }
     }
+
+    async deleteUserByEmail(email: string): Promise<boolean> {
+        try {
+            return await this.userRepository.deleteUserByEmail(email);
+        } catch (error) {
+            throw new Error(`Error deleting user: ${(error as Error).message}`);
+        }
+    }
 }

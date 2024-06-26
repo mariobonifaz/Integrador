@@ -52,5 +52,27 @@ class UsersController {
             }
         });
     }
+    deleteUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { email } = req.params;
+                const success = yield this.userService.deleteUserByEmail(email);
+                if (success) {
+                    res.status(204).send();
+                }
+                else {
+                    res.status(404).json({ error: 'User not found' });
+                }
+            }
+            catch (err) {
+                if (err instanceof Error) {
+                    res.status(400).json({ error: err.message });
+                }
+                else {
+                    res.status(500).json({ error: "Internal server error" });
+                }
+            }
+        });
+    }
 }
 exports.UsersController = UsersController;

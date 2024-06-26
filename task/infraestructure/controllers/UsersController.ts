@@ -34,4 +34,22 @@ export class UsersController {
             }
         }
     }
+
+    async deleteUser(req: Request, res: Response) {
+        try {
+            const { email } = req.params;
+            const success = await this.userService.deleteUserByEmail(email);
+            if (success) {
+                res.status(204).send();
+            } else {
+                res.status(404).json({ error: 'User not found' });
+            }
+        } catch (err) {
+            if (err instanceof Error) {
+                res.status(400).json({ error: err.message });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    }
 }

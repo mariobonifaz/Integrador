@@ -25,4 +25,13 @@ export class PostgresUserRepository implements UserRepository {
             throw new Error(`Error finding user by email: ${(error as Error).message}`);
         }
     }
+
+    async deleteUserByEmail(email: string): Promise<boolean> {
+        try {
+            const result = await UsersModel.destroy({ where: { email } });
+            return result > 0;
+        } catch (error) {
+            throw new Error(`Error deleting user: ${(error as Error).message}`);
+        }
+    }
 }
