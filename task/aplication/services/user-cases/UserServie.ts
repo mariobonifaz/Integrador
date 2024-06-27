@@ -10,7 +10,7 @@ export class UserService{
         try {
             return await this.userRepository.registerUsers(user);
         } catch (error) {
-            throw new Error(`Error creating orer:${(error as Error).message}`);
+            throw new Error(`Error creating user:${(error as Error).message}`);
         }
     }
     

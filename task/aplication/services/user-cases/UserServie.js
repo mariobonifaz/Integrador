@@ -20,7 +20,7 @@ class UserService {
                 return yield this.userRepository.registerUsers(user);
             }
             catch (error) {
-                throw new Error(`Error creating orer:${error.message}`);
+                throw new Error(`Error creating user:${error.message}`);
             }
         });
     }
