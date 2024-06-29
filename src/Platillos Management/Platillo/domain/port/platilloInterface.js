@@ -12,4 +12,7 @@ export class PlatilloRepository{
     async createPlatillo(platillo, ingredientes){
         throw new Error("Method not implemented.");
     }
+    async getAllPlatillo(){
+        throw new Error("Method not implemented.");
+    }
 }

@@ -49,4 +49,24 @@ export class MongoPlatilloRepository extends PlatilloRepository {
             return null;
         }
     }
+    async getAllPlatillo(){
+
+        const db = await connectToDatabase();
+        const collection = db.collection('platillos');
+
+        try {
+            const platillos = await collection.find({}).toArray();
+            return {
+                success: true,
+                data: platillos.map(plat => new Platillo(plat._id, plat.nombre_platillo, plat.descripcion,plat.precio,plat.categoria,plat.imagen)),
+                message: "Platillos recuperados con éxito"
+            };
+        } catch (error) {
+            console.error("Error al recuperar ingredientes:", error);
+            return {
+                success: false,
+                error: error.message || "Error desconocido al recuperar los ingredientes"
+            };
+        }
+    }
 }
