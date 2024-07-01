@@ -5,6 +5,7 @@ const { Signale } = pkg;
 import signale from 'signale';
 import { routePlatillo } from './Platillos Management/Platillo/infraestructure/routes/platilloRouter.js';
 import { ingredienteRoute } from './Platillos Management/Ingredientes/infraestructure/routes/ingredientesRouter.js';
+import { comentRoute } from './Platillos Management/comentearios/infraestructure/routes/comentRoutes.js';
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.use(express.json());
 // Rutas
 app.use('/platillos', routePlatillo);
 app.use('/ingrediente', ingredienteRoute);
+app.use('/comentarios', comentRoute);
+
 
 // Inicio del servidor
 const PORT = 3001;
