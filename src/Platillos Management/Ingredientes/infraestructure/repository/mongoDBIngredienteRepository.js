@@ -6,7 +6,7 @@ import { ObjectId } from 'mongodb';
 export class MongoIngredienteRepository extends IngredienteRepository {
     
     async createIngrediente(nombre, cantidad){
-        const db = await connectToDatabase();
+        const {db} = await connectToDatabase();
         const collection = db.collection('ingredientes');
 
         try {
@@ -31,7 +31,7 @@ export class MongoIngredienteRepository extends IngredienteRepository {
     }
 
     async getIngredientes() {
-        const db = await connectToDatabase();
+        const {db} = await connectToDatabase();
         const collection = db.collection('ingredientes');
 
         try {
@@ -51,7 +51,7 @@ export class MongoIngredienteRepository extends IngredienteRepository {
     }
 
     async updateIngredientes(id,nombre,cantidad) {
-        const db = await connectToDatabase();
+        const {db} = await connectToDatabase();
         const collection = db.collection('ingredientes');
         console.log("Mongo",id)
         try {
@@ -81,7 +81,7 @@ export class MongoIngredienteRepository extends IngredienteRepository {
         }
     }
     async deleteIngrediente(id) {
-        const db = await connectToDatabase();
+        const {db} = await connectToDatabase();
         const collection = db.collection('ingredientes');
 
         try {
@@ -108,7 +108,7 @@ export class MongoIngredienteRepository extends IngredienteRepository {
         }
     }
     async getIngrediente(id) {
-        const db = await connectToDatabase();
+        const {db} = await connectToDatabase();
         const collection = db.collection('ingredientes');
 
         try {
