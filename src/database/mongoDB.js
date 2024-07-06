@@ -15,7 +15,12 @@ export async function connectToDatabase() {
     }
     
     try {
-        client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+        client = new MongoClient(url, { 
+            useNewUrlParser: true, 
+            useUnifiedTopology: true, 
+            tls: true, // Activar TLS (equivalente a SSL)
+            tlsAllowInvalidCertificates: true // Permitir certificados inválidos (temporalmente para pruebas)
+        });
         await client.connect();
         db = client.db(dbName);
         signale.success("Conexión exitosa a la base de datos MongoDB");
