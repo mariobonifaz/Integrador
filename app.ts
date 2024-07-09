@@ -1,33 +1,21 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
-import './Database/Sequelize';
+import './src/Database/Sequelize';
+import usersRoutes from './src/UsersManagement/Users/infraestructure/routes/UserRoutes';
+import directionsRoutes from './src/UsersManagement/Directions/infraestructure/routes/DirectionRoutes';
 
-import { UsersController } from './task/infraestructure/controllers/UsersController';
-import { PostgresUserRepository } from './task/infraestructure/repositories/PostgresUsersRepository';
-import { UserService } from './task/aplication/services/user-cases/UserServie';
-import { DirectionsController } from './task/infraestructure/controllers/DirectionsController';
-import { PostgresDirectionsRepository } from './task/infraestructure/repositories/PostgresDirectionRepository';
-import { DirectionService } from './task/aplication/services/user-cases/DirectionService';
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-const userRepository = new PostgresUserRepository();
-const userService = new UserService(userRepository);
-const usersController = new UsersController(userService);
-
-const directionRepository = new PostgresDirectionsRepository();
-const directionService = new DirectionService(directionRepository);
-const directionController = new DirectionsController(directionService);
-
-app.post('/api/v1/users', (req,res) => usersController.registerUser(req,res));
-app.post('/api/v1/userslogin', (req,res) => usersController.loginUser(req, res));
-app.delete('/api/v1/delete/:email', (req, res) => usersController.deleteUser(req, res));
-
-app.post('/api/v2/directions', (req,res) => directionController.createDirection(req,res));
+// Usar las rutas importadas
+app.use(usersRoutes);
+app.use(directionsRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
