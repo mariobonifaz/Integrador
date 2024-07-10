@@ -1,4 +1,5 @@
 Comando que compila y ejecuta el servicio: npm run start
+lo que el comando hace es compilar(generar los archivos .js) e iniclaizar la aplicacion
 
 Agregar el .env propio
 
