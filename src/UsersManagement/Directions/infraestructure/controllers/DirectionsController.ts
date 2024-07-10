@@ -78,4 +78,17 @@ export class DirectionsController {
             }
         }
     }
+    async getDirectionsByUserId(req: Request, res: Response): Promise<void> {
+        try {
+            const userId = parseInt(req.params.userId, 10);
+            const directions = await this.directionService.getDirectionsByUserId(userId);
+            res.status(200).json(directions);
+        } catch (err) {
+            if (err instanceof Error) {
+                res.status(400).json({ error: err.message });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    }
 }

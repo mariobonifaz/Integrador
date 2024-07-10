@@ -7,6 +7,8 @@ import { UserDirections } from './User-Directions';
 Users.belongsToMany(Directions, { through: UserDirections, as: 'Directions', foreignKey: 'userId' });
 Directions.belongsToMany(Users, { through: UserDirections, as: 'Users', foreignKey: 'directionId' });
 
+UserDirections.belongsTo(Directions, { as: 'direction', foreignKey: 'directionId' });
+
 export {
   sequelize,
   Users,

@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../../Database/Sequelize';
+import { Directions } from '../Directions/domain/entities/Directions';
 
 export class UserDirections extends Model {
   public userId!: number;

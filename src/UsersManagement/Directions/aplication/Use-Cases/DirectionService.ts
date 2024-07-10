@@ -41,4 +41,8 @@ export class DirectionService{
             throw new Error(`Error deleting direction:${(error as Error).message}`);
         }
     }
+
+    async getDirectionsByUserId(userId: number): Promise<Directions[]> {
+        return await this.directionRepository.findAllByUserId(userId);
+      }
 }

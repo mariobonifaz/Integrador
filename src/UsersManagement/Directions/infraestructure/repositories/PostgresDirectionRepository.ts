@@ -1,6 +1,7 @@
 import { Directions } from "../../domain/entities/Directions";
 import { DirectionsRepository } from "../../domain/entities/repositories/DirectionRepository";
 import { UserDirections } from "../../../User-Directions/User-Directions";
+import { Users } from "../../../Users/domain/entities/Users";
 
 export class PostgresDirectionsRepository implements DirectionsRepository {
   async createDirection(directionData: Partial<Directions>, userId: number): Promise<Directions> {
@@ -49,5 +50,19 @@ export class PostgresDirectionsRepository implements DirectionsRepository {
       } catch (error) {
         throw new Error(`Error updating direction: ${(error as Error).message}`);
       }
+  }
+
+  async findAllByUserId(userId: number): Promise<Directions[]> {
+    const userDirections = await UserDirections.findAll({
+      where: { userId }
+    });
+
+    const directionIds = userDirections.map(ud => ud.directionId);
+
+    const directions = await Directions.findAll({
+      where: { id: directionIds }
+    });
+
+    return directions;
   }
 }

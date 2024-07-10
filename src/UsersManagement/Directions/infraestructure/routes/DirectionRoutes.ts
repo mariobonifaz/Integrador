@@ -8,5 +8,6 @@ router.get('/api/v2/directions/:id', (req, res) => directionController.getDirect
 router.get('/api/v2/directions', (req, res) => directionController.getAllDirections(req, res));
 router.delete('/api/v2/directions/:id', (req, res) => directionController.deleteDirectionById(req, res));
 router.put('/api/v2/directions/:id', (req, res) => directionController.updateDirection(req, res));
+router.get('/api/v3/users/:userId/directions', (req, res) => directionController.getDirectionsByUserId(req, res));
 
 export default router;
