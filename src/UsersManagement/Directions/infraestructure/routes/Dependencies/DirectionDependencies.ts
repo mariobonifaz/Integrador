@@ -6,5 +6,5 @@ const directionRepository = new PostgresDirectionsRepository();
 const directionService = new DirectionService(directionRepository);
 const directionController = new DirectionsController(directionService);
 
-export { directionController };
+export { directionController, directionService };
 

@@ -6,4 +6,4 @@ const userRepository = new PostgresUserRepository();
 const userService = new UserService(userRepository);
 const usersController = new UsersController(userService);
 
-export { usersController };
+export { usersController, userService };
