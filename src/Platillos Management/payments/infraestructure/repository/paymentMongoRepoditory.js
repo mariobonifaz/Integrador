@@ -42,18 +42,20 @@ export class PaymentMongoRepository extends PaymentRepository{
         }
     }
 
-    async confirmetPayment(paypal_payment_id) {
+    async confirmetPaymnet(paypal_payment_id) {
         const { db } = await connectToDatabase();
         const pagosCollection = db.collection('pagos');
+        console.log("paso controller")
+
 
         try {
-            const payment = await pagosCollection.findOne({ id_payment_paypal: paypal_payment_id });
+            const payment = await pagosCollection.findOne({ id_paymnet_paypal: paypal_payment_id });
 
             if (!payment) {
                 return "No se encontró el pago";
             }
 
-            const token = getToken();
+            const token = await getToken();
             const captureResult = await capturePayment(paypal_payment_id, token.token_type, token.access_token);
 
             if(captureResult.statusText === 'Created'){
@@ -62,7 +64,7 @@ export class PaymentMongoRepository extends PaymentRepository{
                     { $set: { status_payment: "Completado" } }
                 );
 
-                return payment;
+                return "Se hizo la compra correctamente";
             }else{
                 const result = await pagosCollection.updateOne(
                     { id_payment_paypal: paypal_payment_id },

@@ -9,6 +9,7 @@ import { comentRoute } from './Platillos Management/comentearios/infraestructure
 import { connectRabbitMQ } from './rabbitmq.js';
 import { startDishConsumer } from './dishConsumer.js';
 import { paymnetRouter } from './Platillos Management/payments/infraestructure/routes/paymnetRouter.js';
+import { WewHookrouter } from './Platillos Management/payments/infraestructure/routes/webHookPaypal.js';
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use('/platillos', routePlatillo);
 app.use('/ingrediente', ingredienteRoute);
 app.use('/comentarios', comentRoute);
 app.use('/paymnet', paymnetRouter);
+app.use('/webhook', WewHookrouter);
+
 
 
 

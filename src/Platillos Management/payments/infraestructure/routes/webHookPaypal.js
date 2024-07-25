@@ -11,7 +11,7 @@ WewHookrouter.post('/webhook/paypal', async (req, res) => {
         const paypal_payment_id = event.resource.id
         console.log(paypal_payment_id)
         try{
-            const response = await fetch(`https://payment-service-wdzc.onrender.com/api/v3/transactions/${paypal_payment_id}/certificate`, {
+            const response = await fetch(`https://integrador-1l3d.onrender.com/paymnet/transactions/${paypal_payment_id}/certificate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

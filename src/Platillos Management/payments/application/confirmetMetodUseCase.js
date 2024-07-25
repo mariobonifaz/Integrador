@@ -6,6 +6,8 @@ export class ConfirmetMetodUseCase{
     }
     async run(id_paymnet_paypal){
         try {
+            
+
             return await this.paymentRepository.confirmetPaymnet(id_paymnet_paypal);
         } catch (error) {
             return null;

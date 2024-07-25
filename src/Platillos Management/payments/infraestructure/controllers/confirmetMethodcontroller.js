@@ -1,4 +1,4 @@
-import { ConfirmetMetodUseCase } from "../../application/confirmetMetodUseCase";
+import { ConfirmetMetodUseCase } from "../../application/confirmetMetodUseCase.js";
 
 export class ConfirmetPaymentController{
 
@@ -8,7 +8,7 @@ export class ConfirmetPaymentController{
     async run(req,res){
         try {
             let {paypal_payment_id} = req.params;
-
+            
             const resultPaymentConfirmet = await this.confirmetMetodUseCase.run(paypal_payment_id);
 
             if (resultPaymentConfirmet) {
