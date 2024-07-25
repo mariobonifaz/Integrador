@@ -61,7 +61,7 @@ export const createOrder = async (req: Request, res: Response) => {
       throw new Error('Total calculation resulted in NaN');
     }
 
-    const newOrder = await Order.create({ userId, directionId, dishIds, quantities, total });
+    const newOrder = await Order.create({ userId, directionId, dishIds, quantities, total, status: 'pending',});
     res.status(201).json(newOrder);
 
     await channel.deleteQueue(replyQueue);
@@ -440,5 +440,28 @@ export const deleteOrder = async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error deleting order:', error);
     res.status(500).json({ error: 'Error deleting order' });
+  }
+};
+
+export const updateOrderStatus = async (req: Request, res: Response) => {
+  const orderId = req.params.id;
+  const { status } = req.body;
+
+  try {
+    // Buscar la orden por ID
+    const order = await Order.findByPk(orderId);
+
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+
+    // Actualizar el estado de la orden
+    order.status = status;
+    await order.save();
+
+    res.status(200).json(order);
+  } catch (error) {
+    console.error('Error updating order status:', error);
+    res.status(500).json({ error: 'Error updating order status' });
   }
 };

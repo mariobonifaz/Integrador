@@ -9,6 +9,7 @@ interface OrderAttributes {
   dishIds: string[];
   quantities: number[];
   total: number;
+  status: string; // Nuevo campo
 }
 
 // Define la creación de atributos opcionales (auto-generados por la base de datos)
@@ -22,6 +23,7 @@ class Order extends Model<OrderAttributes, OrderCreationAttributes> implements O
   public dishIds!: string[];
   public quantities!: number[];
   public total!: number;
+  public status!: string; // Nuevo campo
 
   // timestamps
   public readonly createdAt!: Date;
@@ -55,6 +57,11 @@ Order.init(
     total: {
       type: DataTypes.FLOAT,
       allowNull: false,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'pending', // Valor por defecto
     },
   },
   {
