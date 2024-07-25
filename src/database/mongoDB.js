@@ -3,8 +3,8 @@ import pkg from 'signale';
 const { Signale } = pkg;
 
 const signale = new Signale();
-const url = 'mongodb://localhost:27017';
-const dbName = 'integradorplatillos';
+const url = 'mongodb+srv://root:Miller2001@platillosmanagement.usy4jnm.mongodb.net/';
+const dbName = 'integrador_platillos';
 
 let client = null;
 let db = null;
@@ -17,7 +17,7 @@ export async function connectToDatabase() {
     try {
         client = new MongoClient(url, { 
             useNewUrlParser: true, 
-            useUnifiedTopology: true, 
+            useUnifiedTopology: true,
         });
         await client.connect();
         db = client.db(dbName);
