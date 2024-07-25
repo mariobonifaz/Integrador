@@ -6,6 +6,8 @@ import signale from 'signale';
 import { routePlatillo } from './Platillos Management/Platillo/infraestructure/routes/platilloRouter.js';
 import { ingredienteRoute } from './Platillos Management/Ingredientes/infraestructure/routes/ingredientesRouter.js';
 import { comentRoute } from './Platillos Management/comentearios/infraestructure/routes/comentRoutes.js';
+import { connectRabbitMQ } from './rabbitmq.js';
+import { startDishConsumer } from './dishConsumer.js';
 
 const app = express();
 
@@ -22,7 +24,10 @@ app.use('/comentarios', comentRoute);
 
 
 // Inicio del servidor
-const PORT = 3001;
+const PORT = 3002;
+
+connectRabbitMQ().then(startDishConsumer);
+
 app.listen(PORT, () => {
-    signale.success(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Platillos service running on port ${PORT}`);
 });
