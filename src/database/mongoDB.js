@@ -3,8 +3,8 @@ import pkg from 'signale';
 const { Signale } = pkg;
 
 const signale = new Signale();
-const url = 'mongodb+srv://root:Miller2001@platillosmanagement.usy4jnm.mongodb.net/';
-const dbName = 'integrador_platillos';
+const url = 'mongodb://localhost:27017';
+const dbName = 'integradorplatillos';
 
 let client = null;
 let db = null;
