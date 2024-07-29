@@ -12,7 +12,7 @@ WewHookrouter.post('/webhook/paypal', async (req, res) => {
         console.log(paypal_payment_id)
         try{
             const response = await fetch(`https://dish.sazzon.site/paymnet/verifi/${paypal_payment_id}`, {
-                method: 'POST',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 }
