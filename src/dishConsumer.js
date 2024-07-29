@@ -1,7 +1,7 @@
 import { getChannel, connectRabbitMQ } from './rabbitmq.js';
 import mongoose from 'mongoose';
 
-const MONGODB_URI = 'mongodb+srv://root:Miller2001@platillosmanagement.usy4jnm.mongodb.net/'; // Reemplaza esto con tu URI de MongoDB
+const MONGODB_URI = 'mongodb://localhost:27017/integradorplatillos'; // Reemplaza esto con tu URI de MongoDB
 
 const platilloSchema = new mongoose.Schema({
   nombre_platillo: String,
