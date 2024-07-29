@@ -82,4 +82,24 @@ export class UsersController {
             }
         }
     }
+
+    async updatePassword(req: Request, res: Response): Promise<void> {
+        const { userId } = req.params;
+        const { password } = req.body; // Asegúrate de que coincida con el nombre del campo en tu JSON
+        try {
+            console.log(`Updating password for user ID: ${userId}`);
+            const success = await this.userService.updatePassword(userId, password);
+            if (success) {
+                res.status(200).send({ message: 'Password updated successfully' });
+            } else {
+                res.status(400).send({ message: 'User not found or password not updated' });
+            }
+        } catch (err) {
+            if (err instanceof Error) {
+                res.status(400).json({ error: err.message });
+            } else {
+                res.status(500).json({ error: "Internal server error" });
+            }
+        }
+    }
 }

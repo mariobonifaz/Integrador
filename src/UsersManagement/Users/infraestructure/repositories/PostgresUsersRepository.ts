@@ -52,4 +52,15 @@ export class PostgresUserRepository implements UserRepository {
             throw new Error(`Error geting all users: ${(error as Error).message}`);
         }
     }
+
+    async updatePassword(userId: string, newPassword: string): Promise<boolean> {
+        try {
+            const result = await UsersModel.update({ password: newPassword }, {
+                where: { id: userId }
+            });
+            return result[0] > 0;
+        } catch (error) {
+            throw new Error(`Error updating password: ${(error as Error).message}`);
+        }
+    }
 }

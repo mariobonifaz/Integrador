@@ -49,4 +49,16 @@ export class UserService{
             throw new Error(`Error geting all users: ${(error as Error).message}`);
         }
     }
+
+    async updatePassword(userId: string, newPassword: string): Promise<boolean> {
+        try {
+            const user = await this.userRepository.findById(userId);
+            if (user) {
+                return await this.userRepository.updatePassword(userId, newPassword);
+            }
+            return false;
+        } catch (error) {
+            throw new Error(`Error updating password: ${(error as Error).message}`);
+        }
+    }
 }
