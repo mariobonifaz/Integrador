@@ -58,8 +58,11 @@ export class PaymentMongoRepository extends PaymentRepository{
             const token = await getToken();
             const captureResult = await capturePayment(paypal_payment_id, token.token_type, token.access_token);
             console.log("captura ",captureResult)
+            console.log("captura ",captureResult.status)
+            console.log("captura ",captureResult.details.status)
+
             let status, message;
-            if(captureResult.statusText === 'Created'){
+            if(captureResult.status === 'completed'){
                 status = "Completado";
                 message = "Se hizo la compra correctamente";
             } else {
