@@ -1,5 +1,6 @@
 import paypal from '@paypal/checkout-server-sdk';
 import { client } from './paypalClient.js';
+import fetch from 'node-fetch';
 
 export async function createPaymentMetod(amount) {
     
