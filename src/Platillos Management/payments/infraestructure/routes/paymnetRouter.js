@@ -5,5 +5,5 @@ import { createPaymentController,confirmetPaymentController } from '../dependenc
 export const paymnetRouter = express.Router();
 
 paymnetRouter.post("/",createPaymentController.run.bind(createPaymentController));
-paymnetRouter.patch("/verifi/:paypal_payment_id",confirmetPaymentController.run.bind(confirmetPaymentController));
+paymnetRouter.post("/verifi/:paypal_payment_id",confirmetPaymentController.run.bind(confirmetPaymentController));
 
